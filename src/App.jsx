@@ -22,6 +22,7 @@ export default function App() {
   }
 
   function removeEntry(id) {
+    console.log(id);
     setEntries(entries.filter(entry => entry.id !== id));
   }
 
@@ -32,7 +33,7 @@ export default function App() {
         <h1>Anotando Pensamentos</h1>
       </header>
       <main>
-        <AddEntryForm addEntry={addEntry} removeEntry={removeEntry} />
+        <AddEntryForm addEntry={addEntry} />
         <ul className="entries">
           {entries.map((entry) => (
             <Entry

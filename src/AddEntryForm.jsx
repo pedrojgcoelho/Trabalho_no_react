@@ -16,8 +16,13 @@ export function AddEntryForm({ addEntry }) {
     setEntry({ ...entry, timeToLive: e.target.value });
   }
 
-  function handleSubmit() {
-    // chamar addEntry()
+  function handleSubmit(e) {
+    addEntry({
+      ...entry,
+      id:generateId()
+    });// chamar addEntry()
+    e.preventDefault();
+    setEntry(defaultEntry);
   }
 
   return (
