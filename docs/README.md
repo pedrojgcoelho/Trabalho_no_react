@@ -1,4 +1,3 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/7A-39u17)
 # Projeto 01 - React Hooks
 
 Este repositório contém um projeto React que utiliza os Hooks `useState` e `useEffect` para criar um aplicativo que permite o usuário adicionar uma lista de pensamentos (entries) que devem automaticamente desaparecer após alguns segundos:
