@@ -1,11 +1,23 @@
-import { React, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 
 export function Entry(props) {
-  const { entry, removeEntry } = props;
+  const { entry, removeEntry, } = props;
+  const [timeRemaining, setTimeRemaining] = useState(entry.expiresAt - Date.now());
+  
   useEffect(() => {
-    const timeRemaining = entry.expiresAt - Date.now();
-    // setTimeout?
-  }, [entry.expiresAt]);
+    const timer = setTimeout(() => {removeEntry(entry.id);
+    }, timeRemaining);
+    return () => clearTimeout(timer); // setTimeout?
+  }, [entry.expiresAt, entry.id, removeEntry, timeRemaining]);
+
+  useEffect(() => {
+    const getNewExpirationTime = entry.expiresAt - Date.now();
+    if (getNewExpirationTime > 0) {
+      setTimeRemaining(getNewExpirationTime);
+    } else {
+      removeEntry(entry.id);
+    }
+  }, [entry.expiresAt, removeEntry]);
 
   const handleRemoveClick = () => {
     removeEntry(entry.id);

@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import { React, useState } from "react";
 import { generateId, getNewExpirationTime } from "./utilities";
 
@@ -17,11 +18,21 @@ export function AddEntryForm({ addEntry }) {
   }
 
   function handleSubmit(e) {
+    e.preventDefault();
+    if (!entry.text.trim()) {
+      alert("Não deixe o texto em branco");
+      return;
+    }
+  
+    if (entry.timeToLive < 0) {
+      alert("Não é aceito número negativo");
+      return;
+    }
     addEntry({
       ...entry,
-      id:generateId()
+      id:generateId(),
+      expiresAt: getNewExpirationTime(entry.timeToLive)
     });// chamar addEntry()
-    e.preventDefault();
     setEntry(defaultEntry);
   }
 
